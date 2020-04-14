@@ -5,5 +5,4 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface TurmaRepository  extends CrudRepository<Turma, Long> {
 
-    Turma findById(long id, Class<Turma> turmaClass);
 }

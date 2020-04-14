@@ -14,7 +14,6 @@ public interface AlunoRepositoryJPA extends JpaRepository<Turma, Long> {
             "inner join aluno a on ta.alunos_id = a.id " +
             "where a.id = ?1",
             nativeQuery = true)
-//     @Query("select t from Turma  t join Aluno  a where a.id = ?1" )
     public List<Turma> listaTurmaByIdAluno(@Param("id") long id);
 
 }

@@ -24,16 +24,6 @@ public class Aluno implements Serializable {
     private String endereco;
     private LocalDate dataNascimento;
 
-    public List<Turma> getTurmas() {
-        return turmas;
-    }
-
-    public void setTurmas(List<Turma> turmas) {
-        this.turmas = turmas;
-    }
-
-    @ManyToMany
-    private List<Turma> turmas;
 
 
     @NotNull

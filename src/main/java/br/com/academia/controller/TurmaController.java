@@ -20,13 +20,15 @@ public class TurmaController {
     private TurmaRepository turmaRepository;
 
     @GetMapping(path="/all", produces= MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody Iterable<Turma> getAllTurmas() {
+    public @ResponseBody Iterable<Turma> getAllTurmas()
+    {
         return turmaRepository.findAll();
     }
 
     @RequestMapping(value="/get/{id}", method=RequestMethod.GET)
     public @ResponseBody
     Optional<Turma> getTurmasByI(@PathVariable(name = "id") long id) {
+
         return turmaRepository.findById(id);
     }
 
@@ -35,6 +37,7 @@ public class TurmaController {
 
     @PostMapping("/add")
     protected @Valid Turma addTurma(@Valid @RequestBody Turma turma) {
+
         return turmaRepository.save(turma);
     }
 
@@ -42,7 +45,8 @@ public class TurmaController {
 
     @PutMapping(value = "/edit")
     protected @Valid Turma editTurma(@Valid @RequestBody Turma turma) {
-       return turmaRepository.save(turma);
+
+        return turmaRepository.save(turma);
     }
 
     // ------------------- Delete Turma -----------------------------------------
@@ -56,7 +60,7 @@ public class TurmaController {
     public @ResponseBody void deleteTurma(@PathVariable(name = "id") long id) {
         Turma turma =  new Turma();
         turma.setId(id);
-        turmaRepository.delete(turma);
+        turmaRepository.deleteById(turma.getId());
     }
 
 }

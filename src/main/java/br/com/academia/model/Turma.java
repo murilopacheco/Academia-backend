@@ -11,6 +11,7 @@ public class Turma implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+
     private String nome;
 
     private String atividade;

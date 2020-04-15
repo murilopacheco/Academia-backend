@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @CrossOrigin
 @RestController // This means that this class is a Controller
 @RequestMapping(path="/api/aluno") // This means URL's start with /demo (after Application path)
@@ -22,14 +24,18 @@ public class AlunoController {
     @Autowired
     private AlunoRepositoryJPA alunoRepositoryJPA;
 
-    @PostMapping(path="/add") // Map ONLY POST Requests
-    public @ResponseBody
-    String addNewAluno (@RequestParam Aluno aluno) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
+    @PostMapping("/add")
+    protected @Valid Aluno addAluno(@Valid @RequestBody Aluno aluno) {
 
-        alunoRepository.save(aluno);
-        return "Saved";
+        return alunoRepository.save(aluno);
+    }
+
+    // ------------------- Update Aluno ------------------------------------------------
+
+    @PutMapping(value = "/edit")
+    protected @Valid Aluno editAluno(@Valid @RequestBody Aluno aluno) {
+
+        return alunoRepository.save(aluno);
     }
 
     @GetMapping(path="/all", produces= MediaType.APPLICATION_JSON_VALUE)

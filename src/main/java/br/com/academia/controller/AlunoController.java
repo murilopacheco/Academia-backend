@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController // This means that this class is a Controller
@@ -36,6 +37,15 @@ public class AlunoController {
     protected @Valid Aluno editAluno(@Valid @RequestBody Aluno aluno) {
 
         return alunoRepository.save(aluno);
+    }
+
+    // ------------------- buscar aluno por id ------------------------------------------------
+
+    @RequestMapping(value="/get/{id}", method=RequestMethod.GET)
+    public @ResponseBody
+    Optional<Aluno> getAlunoByI(@PathVariable(name = "id") long id) {
+
+        return alunoRepository.findById(id);
     }
 
     @GetMapping(path="/all", produces= MediaType.APPLICATION_JSON_VALUE)

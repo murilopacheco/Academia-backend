@@ -67,4 +67,12 @@ public class AlunoController {
         return turmas;
     }
 
+//    ------------------ delete aluno -----------------------
+    @DeleteMapping(value="/delete/{id}")
+    public @ResponseBody void deleteAluno(@PathVariable(name = "id") long id) {
+        Aluno aluno = new Aluno();
+        aluno.setId(id);
+        alunoRepository.deleteById(aluno.getId());
+}
+
 }
